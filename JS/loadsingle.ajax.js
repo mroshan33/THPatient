@@ -48,7 +48,27 @@ function getPhysioName(id){
       return name;
 }
 
+function displayVideo(link){
+    if (link.length !== 0){
+    var splitedVideos = link.split("\r\n\r\n");
+     var displayvideo="";
+    for (let i = 0; i < splitedVideos.length; i++) {        
+        var sp = splitedVideos[i].search("http");
+        var ep = splitedVideos[i].lastIndexOf("\"");
+        console.info(sp);
+        console.info(ep);
+        var videolink= splitedVideos[i].slice(sp,ep);
+        console.info(videolink);
+        
+        var displayvideo ='<div><video width="600" height="450" controls>   <source src="' + videolink + '" type="video/mp4"> </video><br></div>' + displayvideo;
+    }
 
+        return displayvideo;
+    } else {
+        var displayvideo = '<p>No Videos has been prescribed</p>';
+        return displayvideo;
+    }
+}
 function createPrescription(object){
     $('.single-prescription').empty().append( '<article class="prescription"></article>');
 
@@ -58,7 +78,7 @@ function createPrescription(object){
     '<div class="prescription-date" "prescription-meta" > Prescribed by: ' + getPhysioName(object.author) + '</div> <br>' +
     '<div class="prescription-sub"> Description:' + object.content.rendered + '</div>' 
     +
-    '<div class="prescription-sub"> Please Watch the following videos: <div>' + object.cmb2.prescriptionbook_metabox.prescriptionbook_videos + '</div></div>';
+    '<div class="prescription-sub"> Prescribed video: <div>' + displayVideo(object.cmb2.prescriptionbook_metabox.prescriptionbook_videos) + '</div></div>';
 
 
     
@@ -98,4 +118,5 @@ if(CURRENTID !== null){
 } else {
     window.location.href = "/prescriptionlist.html";
 }
+
 

@@ -32,8 +32,7 @@ audio,
 canvas,
 progress,
 video {
-  display: inline-block;
-  vertical-align: baseline;
+  display: flow-root;
 }
 
 audio:not([controls]) {
@@ -388,10 +387,7 @@ big {
 
 /* Global layouts */
 @media screen and (min-width: 700px) {
-  .two-column {
-    column-count: 2;
-    column-gap: 2.4em;
-  }
+  
 }
 
 /* Global buttons */
@@ -452,12 +448,15 @@ body:not(.index) .site-header {
   text-align: center;
 }
 
+
 /*--------------------------------------------------------------
 Login / logout buttons
 --------------------------------------------------------------*/
 #login,
 #help,
 #aboutus,
+#play-video,
+#do-survey,
 #logout {
   padding: 0.25em 1em;
   background: transparent;
@@ -467,6 +466,8 @@ Login / logout buttons
 
 #help,
 #aboutus,
+#play-video,
+#do-survey,
 #logout {
   color: hsl(0, 0%, 5%);
 }
@@ -474,6 +475,10 @@ Login / logout buttons
 #help:hover,
 #aboutus:focus,
 #aboutus:hover,
+#play-video:focus,
+#do-survey:focus,
+#play-video:hover,
+#do-survey:hover,
 #logout:focus,
 #logout:hover {
   color: white;
@@ -634,6 +639,10 @@ Single prescription
   
   
   
+}
+.screen {
+  display: flex;
+  justify-content: center;
 }
 
 @media screen and (min-width: 45em) {
